@@ -13,19 +13,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="1"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="63dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="false"
+        android:textAlignment="center"
+        android:hint="Your Voice Command" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageButton"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="163dp"
         android:src="@android:drawable/ic_btn_speak_now"
-        android:onClick="vs"/>
+        android:onClick="vs"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp" />
 </RelativeLayout>
