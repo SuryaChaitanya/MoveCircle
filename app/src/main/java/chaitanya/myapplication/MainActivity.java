@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setContentView(new DrawCircle(this));
 
         x=100;
         y=100;
@@ -96,25 +97,25 @@ public class MainActivity extends AppCompatActivity  {
 
         if(v.getId()==R.id.button1)
         {
-            Toast.makeText(this, "left button", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "left button", Toast.LENGTH_SHORT).show();
             x=x-10;
 
         }
         else if(v.getId()==R.id.button2)
         {
-            Toast.makeText(this, "right button", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "right button", Toast.LENGTH_SHORT).show();
             x=x+10;
 
         }
         else if(v.getId()==R.id.button3)
         {
-            Toast.makeText(this, "up button", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "up button", Toast.LENGTH_SHORT).show();
             y=y+10;
 
         }
         else if(v.getId()==R.id.button4)
         {
-            Toast.makeText(this, "down button", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "down button", Toast.LENGTH_SHORT).show();
             y=y+10;
         }
         else if(v.getId()==R.id.imageButton)
@@ -126,17 +127,7 @@ public class MainActivity extends AppCompatActivity  {
             startActivityForResult(intent, SPEECH_REQUEST_CODE);
         }
 
-        Paint paint = new Paint();
-        paint.setColor(Color.BLUE);
-        paint.setStyle(Paint.Style.STROKE);
 
-        Bitmap bmp = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
-
-
-        Canvas canvas = new Canvas();
-        canvas.drawCircle(x, y, radius, paint);
-
-        circle.setImageBitmap(bmp);
     }
 
     @Override
