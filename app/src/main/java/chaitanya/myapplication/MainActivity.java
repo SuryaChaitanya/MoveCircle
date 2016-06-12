@@ -1,6 +1,10 @@
 package chaitanya.myapplication;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
@@ -18,13 +22,17 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity  {
     ImageButton ib;
     private static final int SPEECH_REQUEST_CODE = 0;
     TextView tv;
-    int x,y;
+
     Button right,left,up,down;
-    ImageView imgcircle;
+    int x, y;
+    float radius;
+
+    ImageView circle;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -35,13 +43,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        x=100;
+        y=100;
+        radius=100;
+
         ib = (ImageButton) findViewById(R.id.imageButton);
         tv = (TextView) findViewById(R.id.textView);
         left=(Button)findViewById(R.id.button1);
         right=(Button)findViewById(R.id.button2);
         up=(Button)findViewById(R.id.button3);
         down=(Button)findViewById(R.id.button4);
-        imgcircle=(ImageView)findViewById(R.id.imgcircle);
+
+        circle = (ImageView) findViewById(R.id.imageView);
 
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -59,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             tv.setText("" + spokenText);
 
 
-
             // Do something with spokenText
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -69,34 +82,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void click(View v)
     {
 
+
+
         if(v.getId()==R.id.button1)
         {
             Toast.makeText(this, "left button", Toast.LENGTH_LONG).show();
+            x=x-10;
 
         }
         else if(v.getId()==R.id.button2)
         {
             Toast.makeText(this, "right button", Toast.LENGTH_LONG).show();
+            x=x+10;
 
         }
         else if(v.getId()==R.id.button3)
         {
             Toast.makeText(this, "up button", Toast.LENGTH_LONG).show();
+            y=y+10;
 
         }
         else if(v.getId()==R.id.button4)
         {
             Toast.makeText(this, "down button", Toast.LENGTH_LONG).show();
-
+            y=y+10;
         }
         else if(v.getId()==R.id.imageButton)
         {
             Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                     RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-// Start the activity, the intent will be populated with the speech text
+            // Start the activity, the intent will be populated with the speech text
             startActivityForResult(intent, SPEECH_REQUEST_CODE);
         }
+
+        Paint paint = new Paint();
+        paint.setColor(Color.BLUE);
+        paint.setStyle(Paint.Style.STROKE);
+
+        Bitmap bmp = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
+
+
+        Canvas canvas = new Canvas();
+        canvas.drawCircle(x, y, radius, paint);
+
+        circle.setImageBitmap(bmp);
     }
 
     @Override
@@ -139,8 +169,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         client.disconnect();
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 }
