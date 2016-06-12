@@ -74,6 +74,20 @@ public class MainActivity extends AppCompatActivity  {
         }
     }
 
+    public void Start(View v)
+    {
+        Paint paint = new Paint();
+        paint.setColor(Color.BLUE);
+        paint.setStyle(Paint.Style.STROKE);
+
+        Bitmap bmp = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
+
+
+        Canvas canvas = new Canvas();
+        canvas.drawCircle(bmp.getWidth()/2, bmp.getHeight()/2, radius, paint);
+        Toast.makeText(this, bmp.getWidth(),Toast.LENGTH_SHORT).show();
+        circle.setImageBitmap(bmp);
+    }
 
     public void click(View v)
     {
